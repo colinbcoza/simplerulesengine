@@ -9,7 +9,8 @@ namespace SimpleRulesEngine
 {
     public interface IEvaluator
     {
-        public string Id { get; }
-        public Task<EvaluationResult> Evaluate(params object[] arguments);
+        public string Id { get; set; }
+        public List<string> GetParameterNames();
+        public Task<EvaluationResult> Evaluate(Dictionary<string, object> attributes, params object[] arguments);
     }
 }

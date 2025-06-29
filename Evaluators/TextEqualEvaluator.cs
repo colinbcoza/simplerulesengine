@@ -5,12 +5,17 @@ namespace SimpleRulesEngine.Evaluators
 {
     public class TextEqualEvaluator : BaseEvaluator
     {
+        private List<string> _parameterNames = new List<string> { "compare-text", "compare-to-text" };
+        
         protected StringComparison comparer = StringComparison.OrdinalIgnoreCase;
+
 
         public TextEqualEvaluator(string id, ILogger logger, string evaluatorName = nameof(TextEqualEvaluator)) 
             : base (id, logger, evaluatorName) {}
 
-        protected override async Task<EvaluationResult> EvaluateArguments(object[] arguments)
+        public override List<string> GetParameterNames() => new List<string> { "compare-text", "compare-to-text" };
+
+        protected override async Task<EvaluationResult> EvaluateArguments(Dictionary<string, object> attributes, params object[] arguments)
         {
             if (arguments == null) throw new ArgumentNullException(nameof(arguments));
             if (arguments.Length <= 1) throw new ArgumentOutOfRangeException(nameof(arguments), $"{_evaluatorName} requires minimum of 2 arguments" );

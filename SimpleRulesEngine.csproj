@@ -10,8 +10,4 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Operators\NewFolder\" />
-  </ItemGroup>
-
 </Project>

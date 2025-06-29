@@ -5,7 +5,9 @@ namespace SimpleRulesEngine.Evaluators
 {
     public abstract class BaseEvaluator : IEvaluator
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
+
+        public abstract List<string> GetParameterNames();
 
         protected readonly ILogger _logger;
         protected readonly string _evaluatorName;
@@ -17,11 +19,11 @@ namespace SimpleRulesEngine.Evaluators
             _evaluatorName = evaluatorName;
         }
 
-        public async Task<EvaluationResult> Evaluate(params object[] arguments)
+        public async Task<EvaluationResult> Evaluate(Dictionary<string, object> attributes, params object[] arguments)
         {
             try
             {
-                return await EvaluateArguments(arguments);
+                return await EvaluateArguments(attributes, arguments);
             }
             catch (Exception exception)
             {
@@ -30,6 +32,6 @@ namespace SimpleRulesEngine.Evaluators
             }
         }
 
-        protected abstract Task<EvaluationResult> EvaluateArguments(object[] arguments);
+        protected abstract Task<EvaluationResult> EvaluateArguments(Dictionary<string, object> attributes, params object[] arguments);
     }
 }

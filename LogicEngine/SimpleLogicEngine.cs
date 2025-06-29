@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleRulesEngine.Operators
+namespace SimpleRulesEngine.LogicEngine
 {
-    internal class QueryStorage
+    public static class SimpleLogicEngine
     {
+
     }
 }
